@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ietlsspeller": {
+    "ieltsspeller": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ietlsspeller",
+            "outputPath": "dist/ieltsspeller",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ietlsspeller:build:production"
+              "browserTarget": "ieltsspeller:build:production"
             },
             "development": {
-              "browserTarget": "ietlsspeller:build:development"
+              "browserTarget": "ieltsspeller:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ietlsspeller:build"
+            "browserTarget": "ieltsspeller:build"
           }
         },
         "test": {
