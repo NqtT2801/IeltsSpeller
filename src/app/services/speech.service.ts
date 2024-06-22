@@ -15,6 +15,7 @@ export class SpeechService {
   Speak(text: string, rate: number) {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.rate = rate;
+    utterance.lang = 'en-US';
     this.synth.speak(utterance);
   }
 
