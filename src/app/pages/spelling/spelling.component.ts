@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { SpeechService } from 'src/app/services/speech.service';
 
 @Component({
-  selector: 'app-main-page',
-  templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.css']
+  selector: 'app-spelling',
+  templateUrl: './spelling.component.html',
 })
-export class MainPageComponent implements OnInit {
+export class SpellingComponent implements OnInit {
   choices: string[] = ['Name Spelling', 'A Number', 'Telephone', 'Code Spelling'];
   selectedChoice: string = ''; 
   answer: string = '';

@@ -1,5 +1,20 @@
-<div class="flex justify-center w-full bg-custom-gradient">
+<div class="flex justify-center w-full bg-[#7FA1C3]">
     <div class="w-2/3">
-        <app-main-page></app-main-page>
+        <nav class="flex justify-around font-bold md:text-lg lg:text-xl mt-8 p-4 bg-[#6482AD] text-[#E2DAD6]">
+            <div>
+                <a routerLink="">Spell It</a>
+            </div>
+            <div>
+                <a routerLink="/rate-writing">Rate It</a>
+            </div>
+            <div>
+                <a routerLink="/essay-of-week">Essays of Week</a>
+            </div>
+            <div>
+                <a routerLink="/privacy">Privacy Policy</a>
+            </div>
+        </nav>
+        <router-outlet></router-outlet>
     </div>
 </div>
+

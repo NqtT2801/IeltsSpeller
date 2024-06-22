@@ -15,6 +15,7 @@ export class SpeechService {
   Speak(text: string, rate: number) {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.rate = rate;
+    utterance.lang = 'en-US';
     this.synth.speak(utterance);
   }
 
@@ -26,7 +27,7 @@ export class SpeechService {
         return char + ". ";
       }
     });
-    this.Speak(result.join(''), 0.7);
+    this.Speak(result.join(''), 0.6);
   }
 
   SpellNumber(randomNumber:string) {
@@ -41,123 +42,87 @@ export class SpeechService {
         return number;
       }
     });
-    this.Speak(result.join(' '), 1);
+    this.Speak(result.join(' '), 0.9);
   }
 
   SpellCode(code:string){
-    this.Speak(code.split('').map(char => char + " ").join(''), 0.9);
+    this.Speak(code.split('').map(char => char + " ").join('').replace(/A/g, "A."), 0.6);
   }
 
   
   RandomName(){
     var nameDictionary = [
-      "John Smith",
-      "Sarah Johnson",
-      "Michael Williams",
-      "Emily Brown",
-      "David Jones",
-      "Jessica Davis",
-      "James Miller",
-      "Jennifer Wilson",
-      "Robert Taylor",
-      "Emma Moore",
-      "William Anderson",
-      "Olivia Thomas",
-      "Daniel Jackson",
-      "Elizabeth White",
-      "Matthew Harris",
-      "Sophia Martin",
-      "Christopher Thompson",
-      "Ava Garcia",
-      "Joseph Martinez",
-      "Isabella Robinson",
-      "Andrew Clark",
-      "Mia Rodriguez",
-      "Joshua Lewis",
-      "Charlotte Walker",
-      "Samuel Hall",
-      "Madison Young",
-      "Benjamin Lee",
-      "Abigail Scott",
-      "Ryan King",
-      "Grace Green",
-      "Jonathan Hill",
-      "Lily Adams",
-      "Nicholas Baker",
-      "Avery Nelson",
-      "Tyler Carter",
-      "Zoey Mitchell",
-      "Christian Perez",
-      "Ella Rivera",
-      "Gabriel Sanchez",
-      "Savannah Murphy",
-      "Logan Cooper",
-      "Victoria Reed",
-      "Jackson Ross",
-      "Hannah Campbell",
-      "Ethan Price",
-      "Addison Bell",
-      "Christopher Wood",
-      "Natalie Ward",
-      "Isaac Brooks",
-      "Aaliyah Torres",
-      "Dylan Watson",
-      "Jasmine Ramirez",
-      "Gavin Peterson",
-      "Brooklyn Foster",
-      "Luke Gray",
-      "Zoey Brooks",
-      "Jack Coleman",
-      "Aria Washington",
-      "Caleb Kelly",
-      "Eva Bennett",
-      "Owen Howard",
-      "Stella Long",
-      "Isaac Roberts",
-      "Ruby Foster",
-      "Nathan Coleman",
-      "Sadie Richardson",
-      "Dominic Mitchell",
-      "Elena Jenkins",
-      "Julian Russell",
-      "Claire Adams",
-      "Chase Griffin",
-      "Naomi Baker",
-      "Jason Murphy",
-      "Skylar Price",
-      "Tristan Hayes",
-      "Maya Barnes",
-      "Carter Turner",
-      "Isabelle Scott",
-      "Levi Ward",
-      "Layla Foster",
-      "Lucas Cooper",
-      "Audrey Parker",
-      "Hunter Reed",
-      "Paisley Wright",
-      "Grayson Rogers",
-      "Penelope Brooks",
-      "Lincoln Stewart",
-      "Madeline Simmons",
-      "Jordan Rivera",
-      "Ellie Collins",
-      "Sebastian Hughes",
-      "Caroline Young",
-      "Xavier Mitchell",
-      "Leah King",
-      "Cooper Morgan",
-      "Gabriella Wright",
-      "Blake Thompson",
-      "Kaylee Hill",
-      "Henry Coleman",
-      "Violet Hamilton"
+      "James Smith", "John Johnson", "Robert Williams", "Michael Brown", "William Jones", 
+      "David Miller", "Richard Davis", "Joseph Garcia", "Charles Rodriguez", "Thomas Wilson", 
+      "Christopher Martinez", "Daniel Anderson", "Matthew Taylor", "Anthony Thomas", "Donald Hernandez", 
+      "Mark Moore", "Paul Martin", "Steven Jackson", "Andrew Thompson", "Kenneth White", 
+      "Joshua Lopez", "George Lee", "Kevin Gonzalez", "Brian Harris", "Edward Clark", 
+      "Ronald Lewis", "Timothy Robinson", "Jason Walker", "Jeffrey Perez", "Ryan Hall", 
+      "Jacob Young", "Gary Allen", "Nicholas Sanchez", "Eric Wright", "Stephen Hill", 
+      "Jonathan Scott", "Larry Green", "Justin Baker", "Scott Adams", "Brandon Nelson", 
+      "Benjamin Carter", "Samuel Mitchell", "Gregory Perez", "Frank Roberts", "Alexander Turner", 
+      "Raymond Phillips", "Patrick Campbell", "Jack Parker", "Dennis Evans", "Jerry Edwards", 
+      "Tyler Collins", "Aaron Stewart", "Jose Morris", "Henry Rogers", "Adam Reed", 
+      "Douglas Cook", "Nathan Morgan", "Peter Bell", "Zachary Murphy", "Kyle Rivera", 
+      "Walter Cooper", "Harold Richardson", "Jeremy Cox", "Ethan Howard", "Carl Ward", 
+      "Keith Torres", "Roger Peterson", "Gerald Gray", "Christian Ramirez", "Terry James", 
+      "Sean Watson", "Arthur Brooks", "Austin Kelly", "Noah Sanders", "Lawrence Price", 
+      "Jesse Bennett", "Joe Wood", "Bryan Barnes", "Billy Ross", "Jordan Henderson", 
+      "Albert Coleman", "Dylan Jenkins", "Bruce Perry", "Willie Powell", "Gabriel Long", 
+      "Alan Patterson", "Juan Hughes", "Logan Flores", "Wayne Washington", "Ralph Butler", 
+      "Roy Simmons", "Eugene Foster", "Randy Gonzales", "Vincent Bryant", "Russell Alexander", 
+      "Louis Russell", "Philip Griffin", "Bobby Diaz", "Johnny Hayes", "Bradley Myers", 
+      "Martin Ford", "Craig Hamilton", "Stanley Graham", "Leonard Sullivan", "Calvin Wallace", 
+      "Frederick Oliver", "Elijah Montgomery", "Isaac Herrera", "Derek Gibson", "Dan Chapman", 
+      "Keith Gonzalez", "Trevor Stephens", "Oliver Barker", "Gavin George", "Lucas Cunningham", 
+      "Peter Bates", "Oscar Flynn", "Maxwell Reid", "Charlie Newman", "Simon Lawson", 
+      "Theodore Bishop", "Harrison Sullivan", "Edgar Matthews", "Owen Wheeler", "Elias Ramirez", 
+      "Finn Alvarez", "Miles Watkins", "Jasper Carlson", "Silas Harper", "Emmett Page", 
+      "Wesley Fuller", "Caleb Lynch", "Leo Dean", "Colin Henderson", "Ezra Burgess", 
+      "Axel Caldwell", "Damian Blake", "Sebastian Ball", "Ezekiel McBride", "Arthur Morton", 
+      "Tobias Vaughan", "Felix Pruitt", "Hugo Small", "Luke Warner", "Kai Morton", 
+      "Dante Norman", "Gideon Waters", "Jude Lambert", "Kieran Jacobs", "Landon Abbott", 
+      "Nico Parks", "Orion Chambers", "Quinn Clayton", "Rhys Pena", "Soren Becker", 
+      "Xavier Yates", "Zane Holloway", "Atticus Saunders", "Beckett Duffy", "Cassius Bartlett", 
+      "Dean Valentine", "Elliot Pitts", "Griffin Rollins", "Holden Roberson", "Jonah Calderon", 
+      "Milo Roth", "Roman Knox", "Rowan Garrison", "Sawyer McIntyre", "Theo Herman", 
+      "Weston Sandoval", "Zander Buckner", "Abigail Reynolds", "Alexis Pierce", "Alice Walters", 
+      "Alyssa Fuller", "Amber Bridges", "Amy Holland", "Angela Hutchinson", "Anna Cannon", 
+      "Annie Sawyer", "Ashley Dixon", "Audrey Castro", "Bella Warner", "Bethany Hopkins", 
+      "Brianna Carpenter", "Brooke Nichols", "Catherine Glover", "Charlotte Mason", "Chelsea Pratt", 
+      "Chloe Barnett", "Claire Kennedy", "Danielle Warren", "Diana Hopkins", "Elizabeth Palmer", 
+      "Emily Matthews", "Emma Fox", "Erica Reed", "Eva Rose", "Gabrielle Dixon", 
+      "Hailey Stone", "Hannah Buchanan", "Isabella Doyle", "Jasmine Schultz", "Jennifer Blake", 
+      "Jessica Norman", "Jillian Marsh", "Julia Riley", "Kaitlyn Wheeler", "Katherine Lawrence", 
+      "Kayla Stanley", "Lauren Hayes", "Leah Hudson", "Lily Goodwin", "Madison Bishop", 
+      "Megan Chambers", "Melissa Pratt", "Michelle Mendoza", "Natalie Perkins", "Olivia Pierce", 
+      "Paige Andrews", "Rachel Curtis", "Rebecca Sullivan", "Samantha Weaver", "Sarah Gonzalez", 
+      "Savannah Elliott", "Sophia Fletcher", "Stephanie Erickson", "Sydney Sutton", "Taylor Oliver", 
+      "Vanessa Rose", "Victoria Hopkins", "Whitney Grant", "Zoe Barnett"
     ]
     this.name = nameDictionary[Math.floor(Math.random() * nameDictionary.length)];
   }
 
   RandomNumber(){
-    let randomNumber = Math.floor(Math.random() * (99 - 10 + 1)) + 10;
-    this.number = randomNumber.toString();
+    let result = 0;
+   // Generate a random number between 0 and 1
+    const random = Math.random();
+
+    if (random < 0.35) {
+      // 35% chance for numbers from 13 to 19
+      result = Math.floor(Math.random() * 7) + 13; // Random number between 13 and 19
+    } else if (random < 0.7) {
+      // 35% chance for numbers with 0 at the end
+      result = Math.floor(Math.random() * 8 + 2) * 10; // Random multiple of 10 between 0 and 80
+    } else {
+      // 30% chance for the rest (20 to 99 excluding numbers with 0 at the end and 13 to 19)
+      let randomNumber;
+      do {
+        randomNumber = Math.floor(Math.random() * 80) + 20;
+      } while (randomNumber % 10 === 0); // Repeat until randomNumber is not ending in 0
+      result = randomNumber;
+    }
+    this.number = result.toString();
   }
 
   RandomTelephone(){
