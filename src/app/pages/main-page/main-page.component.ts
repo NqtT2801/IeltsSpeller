@@ -4,7 +4,6 @@ import { SpeechService } from 'src/app/services/speech.service';
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
   choices: string[] = ['Name Spelling', 'A Number', 'Telephone', 'Code Spelling'];
